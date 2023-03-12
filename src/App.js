@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Carousel from "./components/Carousel";
 
-function App() {
+const DATA = [
+  { name: "Company A" },
+  { name: "Company X" },
+  { name: "Company Z" },
+  { name: "Company B" },
+  { name: "Company C" },
+  { name: "Company D" },
+];
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Carousel>
+      {DATA.map(({ name }) => (
+        <div
+          className="min-w-[calc(100%/3)] border aspect-video p-2"
+          key={name}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <h2>{name}</h2>
+          <Carousel className="overflow-x-overlay">
+            {DATA.map(({ name }) => (
+              <div
+                className="min-w-[calc(100%/3)] border aspect-video p-2"
+                key={name}
+              >
+                <h2>{name}</h2>
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      ))}
+    </Carousel>
   );
 }
-
-export default App;
